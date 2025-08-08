@@ -248,8 +248,8 @@
       else result = total1 < total2 ? 'Победила левая дорожка' : 'Победила правая дорожка';
 
       
-      const advantage1 = (dial1 - et1) + rt1;
-      const advantage2 = (dial2 - et2) + rt2;
+      const advantage1 = (et1 - dial1) + rt1;
+      const advantage2 = (et2 - dial2) + rt2;
 
       const formatted1 = advantage1.toFixed(3);
       const formatted2 = advantage2.toFixed(3);
