@@ -215,8 +215,8 @@
       }
 
       const delta = Math.abs(dial1 - dial2);
-      const lane1delay = dial1 < dial2 ? 0 : delta;
-      const lane2delay = dial2 < dial1 ? 0 : delta;
+      const lane1delay = dial1 > dial2 ? 0 : delta;
+      const lane2delay = dial2 > dial1 ? 0 : delta;
 
       const red1 = rt1 < 0;
       const red2 = rt2 < 0;
@@ -259,3 +259,4 @@
   </script>
 </body>
 </html>
+
