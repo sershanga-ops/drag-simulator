@@ -247,6 +247,16 @@
       else if (total1 === total2) result = 'Ничья!';
       else result = total1 < total2 ? 'Победила левая дорожка' : 'Победила правая дорожка';
 
+      
+      const advantage1 = (dial1 - et1) + rt1;
+      const advantage2 = (dial2 - et2) + rt2;
+
+      const formatted1 = advantage1.toFixed(3);
+      const formatted2 = advantage2.toFixed(3);
+      const formulaResult = ` ( левая = ${formatted1}, правая = ${formatted2})`;
+
+      result += formulaResult;
+
       document.getElementById('results').innerText = result;
     }
 
@@ -259,4 +269,3 @@
   </script>
 </body>
 </html>
-
