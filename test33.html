@@ -1,155 +1,125 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <title>22RT Drag Handicap Simulator</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #111;
-      color: #eee;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-      -webkit-user-select: none;
-      -webkit-touch-callout: none;
-    }
-    h1 {
-      color: #f90;
-      margin: 15px 0;
-      font-size: 1.8em;
-    }
-    .tree-container {
-      display: flex;
-      justify-content: center;
-      gap: 80px;
-      padding: 15px 0;
-      background: #1a1a1a;
-      border-bottom: 2px solid #333;
-    }
-    .tree {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .bulb {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      margin: 6px 0;
-      background-color: #333;
-      box-shadow: 0 0 5px #000;
-      transition: background-color 0.25s ease, box-shadow 0.25s ease;
-    }
-    .bulb.on-white {
-      background-color: white;
-      box-shadow: 0 0 12px white;
-    }
-    .bulb.on-yellow {
-      background-color: yellow;
-      box-shadow: 0 0 12px yellow;
-    }
-    .bulb.on-green {
-      background-color: lime;
-      box-shadow: 0 0 12px lime;
-    }
-    .bulb.on-red {
-      background-color: red;
-      box-shadow: 0 0 12px red;
-    }
-    .inputs {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      padding: 15px;
-    }
-    .lane {
-      background: #222;
-      padding: 15px;
-      border-radius: 12px;
-      width: 240px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    }
-    .lane h2 {
-      margin-top: 0;
-      color: #f90;
-    }
-    .lane label {
-      display: block;
-      margin-top: 10px;
-      font-weight: 600;
-    }
-    input[type="number"] {
-      width: 110px;
-      padding: 8px;
-      font-size: 16px;
-      border-radius: 6px;
-      border: none;
-      margin-top: 4px;
-      text-align: center;
-      background: #333;
-      color: #fff;
-    }
-    button {
-      padding: 8px 12px;
-      font-size: 16px;
-      border-radius: 6px;
-      background-color: #444;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      margin-left: 4px;
-    }
-    button:hover {
-      background-color: #666;
-    }
-    #results {
-      margin: 20px;
-      font-size: 1.2em;
-      font-weight: 700;
-    }
-    #randAllBtn {
-      margin-top: 10px;
-      background-color: #f90;
-      color: #111;
-      font-weight: bold;
-    }
-    #startBtn {
-      background-color: #0f0;
-      color: #111;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>22RT Drag Handicap Simulator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: #eee;
+    margin: 0;
+    padding: 0;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+  }
+  h1 {
+    color: #f90;
+    margin: 10px 0;
+    font-size: 1.8em;
+    text-align: center;
+  }
+  .main-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+  }
+  .lane {
+    background: #222;
+    padding: 10px;
+    border-radius: 12px;
+    width: 220px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  }
+  .lane h2 {
+    margin: 0;
+    color: #f90;
+    text-align: center;
+  }
+  .lane label {
+    display: block;
+    margin-top: 8px;
+    font-weight: 600;
+  }
+  input[type="number"] {
+    width: 90px;
+    padding: 6px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: none;
+    margin-top: 3px;
+    text-align: center;
+    background: #333;
+    color: #fff;
+  }
+  button {
+    padding: 6px 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    background-color: #444;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-left: 4px;
+  }
+  button:hover {
+    background-color: #666;
+  }
+  .tree-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 5px 0;
+  }
+  .tree {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .bulb {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    margin: 3px 0;
+    background-color: #333;
+  }
+  .bulb.on-white { background-color: white; }
+  .bulb.on-yellow { background-color: yellow; }
+  .bulb.on-green { background-color: lime; }
+  .bulb.on-red { background-color: red; }
+  #results {
+    margin: 15px;
+    font-size: 1.1em;
+    font-weight: 700;
+    text-align: center;
+    min-height: 1.5em;
+  }
+  #randAllBtn {
+    background-color: #f90;
+    color: #111;
+    font-weight: bold;
+  }
+  #startBtn {
+    background-color: #0f0;
+    color: #111;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+  .buttons {
+    text-align: center;
+    margin-top: 5px;
+  }
+</style>
 </head>
 <body>
   <h1>22RT Drag Handicap Simulator</h1>
-  <div class="tree-container">
-    <div class="tree" id="tree1">
-      <div class="bulb on-white"></div>
-      <div class="bulb on-white"></div>
-      <div class="bulb" id="y1_1"></div>
-      <div class="bulb" id="y1_2"></div>
-      <div class="bulb" id="y1_3"></div>
-      <div class="bulb" id="g1"></div>
-      <div class="bulb" id="r1"></div>
-    </div>
-    <div class="tree" id="tree2">
-      <div class="bulb on-white"></div>
-      <div class="bulb on-white"></div>
-      <div class="bulb" id="y2_1"></div>
-      <div class="bulb" id="y2_2"></div>
-      <div class="bulb" id="y2_3"></div>
-      <div class="bulb" id="g2"></div>
-      <div class="bulb" id="r2"></div>
-    </div>
-  </div>
-
-  <div class="inputs">
+  <div class="main-container">
     <div class="lane">
-      <h2>Левая дорожка</h2>
+      <h2>Левая</h2>
       <label>RT:
         <input type="number" id="rt1" step="0.001" />
         <button type="button" data-rand="rt1">🎲</button>
@@ -163,8 +133,28 @@
         <button type="button" data-rand="dial1">🎲</button>
       </label>
     </div>
+    <div class="tree-container">
+      <div class="tree" id="tree1">
+        <div class="bulb on-white"></div>
+        <div class="bulb on-white"></div>
+        <div class="bulb" id="y1_1"></div>
+        <div class="bulb" id="y1_2"></div>
+        <div class="bulb" id="y1_3"></div>
+        <div class="bulb" id="g1"></div>
+        <div class="bulb" id="r1"></div>
+      </div>
+      <div class="tree" id="tree2">
+        <div class="bulb on-white"></div>
+        <div class="bulb on-white"></div>
+        <div class="bulb" id="y2_1"></div>
+        <div class="bulb" id="y2_2"></div>
+        <div class="bulb" id="y2_3"></div>
+        <div class="bulb" id="g2"></div>
+        <div class="bulb" id="r2"></div>
+      </div>
+    </div>
     <div class="lane">
-      <h2>Правая дорожка</h2>
+      <h2>Правая</h2>
       <label>RT:
         <input type="number" id="rt2" step="0.001" />
         <button type="button" data-rand="rt2">🎲</button>
@@ -179,24 +169,19 @@
       </label>
     </div>
   </div>
-
-  <button type="button" id="randAllBtn">🎲 Рандом для всех</button>
-  <button type="button" id="startBtn">Рассчитать результат</button>
+  <div class="buttons">
+    <button type="button" id="randAllBtn">🎲 Рандом для всех</button>
+    <button type="button" id="startBtn">Рассчитать результат</button>
+  </div>
   <div id="results"></div>
-
   <script>
     function randomValueRT() {
-      // 10% шанс фальстарта
       return Math.random() < 0.1 
         ? (-(Math.random() * 0.2 + 0.01)).toFixed(3) 
         : (Math.random() * 0.3 + 0.2).toFixed(3);
     }
-    function randomValueET() {
-      return (Math.random() * 3 + 8).toFixed(3);
-    }
-    function randomValueDial() {
-      return (Math.random() * 3 + 8).toFixed(3);
-    }
+    function randomValueET() { return (Math.random() * 3 + 8).toFixed(3); }
+    function randomValueDial() { return (Math.random() * 3 + 8).toFixed(3); }
     function rand(id) {
       const input = document.getElementById(id);
       if (id.includes('rt')) input.value = randomValueRT();
@@ -220,11 +205,8 @@
       await new Promise(r => setTimeout(r, 400));
       document.getElementById(`y${lane}_3`).classList.add('on-yellow');
       await new Promise(r => setTimeout(r, 400));
-      if (isRed) {
-        document.getElementById(`r${lane}`).classList.add('on-red');
-      } else {
-        document.getElementById(`g${lane}`).classList.add('on-green');
-      }
+      if (isRed) document.getElementById(`r${lane}`).classList.add('on-red');
+      else document.getElementById(`g${lane}`).classList.add('on-green');
     }
     async function startRace() {
       resetTree();
@@ -252,7 +234,9 @@
       const breakout1 = et1 < dial1;
       const breakout2 = et2 < dial2;
       let result = '';
-      if (red1 && red2) {
+      if (rt1===rt2 && et1===et2 && dial1===dial2) {
+        result = 'Ничья! Требуется перезаезд';
+      } else if (red1 && red2) {
         result = Math.abs(rt1) < Math.abs(rt2)
           ? 'Победила левая дорожка (меньший фальстарт)'
           : 'Победила правая дорожка (меньший фальстарт)';
@@ -279,7 +263,7 @@
       });
       document.getElementById('randAllBtn').addEventListener('click', randAll);
       document.getElementById('startBtn').addEventListener('click', startRace);
-      randAll(); // при загрузке уже сгенерировать
+      randAll();
     });
   </script>
 </body>
