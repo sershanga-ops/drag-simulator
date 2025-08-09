@@ -230,52 +230,32 @@
         lightSequence(1, lane1delay, red1),
         lightSequence(2, lane2delay, red2)
       ]);
-      // --- начиная отсюда (заменить старую логику на эту) ---
-const advantage1 = (et1 - dial1) + rt1;
-const advantage2 = (et2 - dial2) + rt2;
-
-const diff1 = Math.abs(et1 - dial1);
-const diff2 = Math.abs(et2 - dial2);
-
-// малый допуск для сравнения float
-const EPS = 0.0005;
-
-let result = '';
-
-// точная ничья по исходным трём параметрам (можно заменить на EPS-проверку, если нужно)
-if (Math.abs(rt1 - rt2) < EPS && Math.abs(et1 - et2) < EPS && Math.abs(dial1 - dial2) < EPS) {
-  result = 'Ничья! Требуется перезаезд';
-} else if (red1 && red2) {
-  result = Math.abs(rt1) < Math.abs(rt2)
-    ? 'Победила левая дорожка (меньший фальстарт)'
-    : 'Победила правая дорожка (меньший фальстарт)';
-} else if (red1) {
-  result = 'Победила правая дорожка (фальстарт слева)';
-} else if (red2) {
-  result = 'Победила левая дорожка (фальстарт справа)';
-} else if (breakout1 && !breakout2) {
-  result = 'Победила правая дорожка (левый breakout)';
-} else if (!breakout1 && breakout2) {
-  result = 'Победила левая дорожка (правый breakout)';
-} else if (breakout1 && breakout2) {
-  // оба перебрали — побеждает тот, у кого меньший абсолютный перебор (ближе к нулю)
-  if (Math.abs(diff1 - diff2) < EPS) result = 'Ничья! Требуется перезаезд';
-  else result = diff1 < diff2
-    ? 'Оба breakout, но победила левая (меньший перебор)'
-    : 'Оба breakout, но победила правая (меньший перебор)';
-} else {
-  // обычный случай: сравниваем advantage (тот самый, что выводим)
-  if (Math.abs(advantage1 - advantage2) < EPS) {
-    result = 'Ничья! Требуется перезаезд';
-  } else {
-    result = advantage1 < advantage2
-      ? 'Победила левая дорожка'
-      : 'Победила правая дорожка';
-  }
-}
-
-// добавляем отображаемые значения (как у тебя было)
-result += ` (левая = ${advantage1.toFixed(3)}, правая = ${advantage2.toFixed(3)})`;
+      const total1 = rt1 + et1;
+      const total2 = rt2 + et2;
+      const breakout1 = et1 < dial1;
+      const breakout2 = et2 < dial2;
+      let result = '';
+      if (rt1===rt2 && et1===et2 && dial1===dial2) {
+        result = 'Ничья! Требуется перезаезд';
+      } else if (red1 && red2) {
+        result = Math.abs(rt1) < Math.abs(rt2)
+          ? 'Победила левая дорожка (меньший фальстарт)'
+          : 'Победила правая дорожка (меньший фальстарт)';
+      } else if (red1) result = 'Победила правая дорожка (фальстарт слева)';
+      else if (red2) result = 'Победила левая дорожка (фальстарт справа)';
+      else if (breakout1 && !breakout2) result = 'Победила правая дорожка (левый breakout)';
+      else if (!breakout1 && breakout2) result = 'Победила левая дорожка (правый breakout)';
+      else if (breakout1 && breakout2) {
+        const diff1 = Math.abs(et1 - dial1);
+        const diff2 = Math.abs(et2 - dial2);
+        result = diff1 < diff2
+          ? 'Оба breakout, но победила левая (меньший перебор)'
+          : 'Оба breakout, но победила правая (меньший перебор)';
+      } else if (total1 === total2) result = 'Ничья!';
+      else result = total1 < total2 ? 'Победила левая дорожка' : 'Победила правая дорожка';
+      const advantage1 = (et1 - dial1) + rt1;
+      const advantage2 = (et2 - dial2) + rt2;
+      result += ` (левая = ${advantage1.toFixed(3)}, правая = ${advantage2.toFixed(3)})`;
       document.getElementById('results').innerText = result;
     }
     document.addEventListener('DOMContentLoaded', () => {
