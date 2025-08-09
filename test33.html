@@ -10,74 +10,23 @@
       background-color: #111;
       color: #eee;
       text-align: center;
-      padding: 20px;
+      margin: 0;
+      padding: 0;
       -webkit-user-select: none;
       -webkit-touch-callout: none;
     }
     h1 {
       color: #f90;
-      margin-bottom: 25px;
-    }
-    .inputs {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-bottom: 20px;
-    }
-    .lane {
-      background: #222;
-      padding: 15px;
-      border-radius: 10px;
-      width: 250px;
-      box-sizing: border-box;
-    }
-    .lane h2 {
-      margin-top: 0;
-      margin-bottom: 10px;
-    }
-    .lane label {
-      display: block;
-      margin-top: 12px;
-      font-weight: 600;
-    }
-    input[type="number"] {
-      width: 110px;
-      padding: 10px;
-      margin: 5px 0 0 0;
-      font-size: 16px;
-      border-radius: 8px;
-      border: none;
-      -moz-appearance: textfield;
-      box-sizing: border-box;
-    }
-    button {
-      padding: 12px 18px;
-      margin-left: 8px;
-      font-size: 18px;
-      border-radius: 8px;
-      background-color: #444;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      touch-action: manipulation;
-      -webkit-tap-highlight-color: transparent;
-      user-select: none;
-    }
-    button:active {
-      background-color: #666;
-    }
-    #results {
-      margin-top: 25px;
-      font-size: 1.3em;
-      font-weight: 700;
-      min-height: 2em;
+      margin: 15px 0;
+      font-size: 1.8em;
     }
     .tree-container {
       display: flex;
       justify-content: center;
-      gap: 100px;
-      margin-top: 30px;
+      gap: 80px;
+      padding: 15px 0;
+      background: #1a1a1a;
+      border-bottom: 2px solid #333;
     }
     .tree {
       display: flex;
@@ -85,68 +34,98 @@
       align-items: center;
     }
     .bulb {
-      width: 30px;
-      height: 30px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
-      margin: 5px 0;
-      background-color: #444;
+      margin: 6px 0;
+      background-color: #333;
       box-shadow: 0 0 5px #000;
-      transition: background-color 0.25s ease;
+      transition: background-color 0.25s ease, box-shadow 0.25s ease;
     }
     .bulb.on-white {
       background-color: white;
-      box-shadow: 0 0 10px white;
+      box-shadow: 0 0 12px white;
     }
     .bulb.on-yellow {
       background-color: yellow;
-      box-shadow: 0 0 10px yellow;
+      box-shadow: 0 0 12px yellow;
     }
     .bulb.on-green {
       background-color: lime;
-      box-shadow: 0 0 10px lime;
+      box-shadow: 0 0 12px lime;
     }
     .bulb.on-red {
       background-color: red;
-      box-shadow: 0 0 10px red;
+      box-shadow: 0 0 12px red;
+    }
+    .inputs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 15px;
+    }
+    .lane {
+      background: #222;
+      padding: 15px;
+      border-radius: 12px;
+      width: 240px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    .lane h2 {
+      margin-top: 0;
+      color: #f90;
+    }
+    .lane label {
+      display: block;
+      margin-top: 10px;
+      font-weight: 600;
+    }
+    input[type="number"] {
+      width: 110px;
+      padding: 8px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
+      margin-top: 4px;
+      text-align: center;
+      background: #333;
+      color: #fff;
+    }
+    button {
+      padding: 8px 12px;
+      font-size: 16px;
+      border-radius: 6px;
+      background-color: #444;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      margin-left: 4px;
+    }
+    button:hover {
+      background-color: #666;
+    }
+    #results {
+      margin: 20px;
+      font-size: 1.2em;
+      font-weight: 700;
+    }
+    #randAllBtn {
+      margin-top: 10px;
+      background-color: #f90;
+      color: #111;
+      font-weight: bold;
+    }
+    #startBtn {
+      background-color: #0f0;
+      color: #111;
+      font-weight: bold;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
   <h1>22RT Drag Handicap Simulator</h1>
-  <div class="inputs">
-    <div class="lane">
-      <h2>Левая дорожка</h2>
-      <label for="rt1">RT:
-        <input type="number" id="rt1" step="0.001" />
-        <button type="button" data-rand="rt1">🎲</button>
-      </label>
-      <label for="et1">ET:
-        <input type="number" id="et1" step="0.001" />
-        <button type="button" data-rand="et1">🎲</button>
-      </label>
-      <label for="dial1">Dial-in:
-        <input type="number" id="dial1" step="0.001" />
-        <button type="button" data-rand="dial1">🎲</button>
-      </label>
-    </div>
-    <div class="lane">
-      <h2>Правая дорожка</h2>
-      <label for="rt2">RT:
-        <input type="number" id="rt2" step="0.001" />
-        <button type="button" data-rand="rt2">🎲</button>
-      </label>
-      <label for="et2">ET:
-        <input type="number" id="et2" step="0.001" />
-        <button type="button" data-rand="et2">🎲</button>
-      </label>
-      <label for="dial2">Dial-in:
-        <input type="number" id="dial2" step="0.001" />
-        <button type="button" data-rand="dial2">🎲</button>
-      </label>
-    </div>
-  </div>
-  <button type="button" id="startBtn">Рассчитать результат</button>
-  <div id="results"></div>
   <div class="tree-container">
     <div class="tree" id="tree1">
       <div class="bulb on-white"></div>
@@ -167,21 +146,72 @@
       <div class="bulb" id="r2"></div>
     </div>
   </div>
+
+  <div class="inputs">
+    <div class="lane">
+      <h2>Левая дорожка</h2>
+      <label>RT:
+        <input type="number" id="rt1" step="0.001" />
+        <button type="button" data-rand="rt1">🎲</button>
+      </label>
+      <label>ET:
+        <input type="number" id="et1" step="0.001" />
+        <button type="button" data-rand="et1">🎲</button>
+      </label>
+      <label>Dial-in:
+        <input type="number" id="dial1" step="0.001" />
+        <button type="button" data-rand="dial1">🎲</button>
+      </label>
+    </div>
+    <div class="lane">
+      <h2>Правая дорожка</h2>
+      <label>RT:
+        <input type="number" id="rt2" step="0.001" />
+        <button type="button" data-rand="rt2">🎲</button>
+      </label>
+      <label>ET:
+        <input type="number" id="et2" step="0.001" />
+        <button type="button" data-rand="et2">🎲</button>
+      </label>
+      <label>Dial-in:
+        <input type="number" id="dial2" step="0.001" />
+        <button type="button" data-rand="dial2">🎲</button>
+      </label>
+    </div>
+  </div>
+
+  <button type="button" id="randAllBtn">🎲 Рандом для всех</button>
+  <button type="button" id="startBtn">Рассчитать результат</button>
+  <div id="results"></div>
+
   <script>
+    function randomValueRT() {
+      // 10% шанс фальстарта
+      return Math.random() < 0.1 
+        ? (-(Math.random() * 0.2 + 0.01)).toFixed(3) 
+        : (Math.random() * 0.3 + 0.2).toFixed(3);
+    }
+    function randomValueET() {
+      return (Math.random() * 3 + 8).toFixed(3);
+    }
+    function randomValueDial() {
+      return (Math.random() * 3 + 8).toFixed(3);
+    }
     function rand(id) {
       const input = document.getElementById(id);
-      if (id.includes('rt')) input.value = (Math.random() * 0.3 + 0.2).toFixed(3);
-      else if (id.includes('et')) input.value = (Math.random() * 3 + 8).toFixed(3);
-      else if (id.includes('dial')) input.value = (Math.random() * 3 + 8).toFixed(3);
+      if (id.includes('rt')) input.value = randomValueRT();
+      else if (id.includes('et')) input.value = randomValueET();
+      else if (id.includes('dial')) input.value = randomValueDial();
     }
-
+    function randAll() {
+      ['rt1','et1','dial1','rt2','et2','dial2'].forEach(rand);
+    }
     function resetTree() {
       ["y1_1","y1_2","y1_3","g1","r1","y2_1","y2_2","y2_3","g2","r2"].forEach(id => {
         document.getElementById(id).className = 'bulb';
       });
       document.getElementById('results').innerText = '';
     }
-
     async function lightSequence(lane, delay, isRed) {
       await new Promise(r => setTimeout(r, delay * 1000));
       document.getElementById(`y${lane}_1`).classList.add('on-yellow');
@@ -196,7 +226,6 @@
         document.getElementById(`g${lane}`).classList.add('on-green');
       }
     }
-
     async function startRace() {
       resetTree();
       const rt1 = parseFloat(document.getElementById('rt1').value);
@@ -205,35 +234,24 @@
       const rt2 = parseFloat(document.getElementById('rt2').value);
       const et2 = parseFloat(document.getElementById('et2').value);
       const dial2 = parseFloat(document.getElementById('dial2').value);
-
-      if (
-        isNaN(rt1) || isNaN(et1) || isNaN(dial1) ||
-        isNaN(rt2) || isNaN(et2) || isNaN(dial2)
-      ) {
+      if ([rt1,et1,dial1,rt2,et2,dial2].some(v => isNaN(v))) {
         alert('Заполните все поля корректными числами!');
         return;
       }
-
       const delta = Math.abs(dial1 - dial2);
       const lane1delay = dial1 > dial2 ? 0 : delta;
       const lane2delay = dial2 > dial1 ? 0 : delta;
-
       const red1 = rt1 < 0;
       const red2 = rt2 < 0;
-
       await Promise.all([
         lightSequence(1, lane1delay, red1),
         lightSequence(2, lane2delay, red2)
       ]);
-
       const total1 = rt1 + et1;
       const total2 = rt2 + et2;
-
       const breakout1 = et1 < dial1;
       const breakout2 = et2 < dial2;
-
       let result = '';
-
       if (red1 && red2) {
         result = Math.abs(rt1) < Math.abs(rt2)
           ? 'Победила левая дорожка (меньший фальстарт)'
@@ -242,29 +260,26 @@
       else if (red2) result = 'Победила левая дорожка (фальстарт справа)';
       else if (breakout1 && !breakout2) result = 'Победила правая дорожка (левый breakout)';
       else if (!breakout1 && breakout2) result = 'Победила левая дорожка (правый breakout)';
-      else if (breakout1 && breakout2)
-        result = et1 < et2 ? 'Оба breakout, но победила левая (меньший)' : 'Оба breakout, но победила правая (меньший)';
-      else if (total1 === total2) result = 'Ничья!';
+      else if (breakout1 && breakout2) {
+        const diff1 = Math.abs(et1 - dial1);
+        const diff2 = Math.abs(et2 - dial2);
+        result = diff1 < diff2
+          ? 'Оба breakout, но победила левая (меньший перебор)'
+          : 'Оба breakout, но победила правая (меньший перебор)';
+      } else if (total1 === total2) result = 'Ничья!';
       else result = total1 < total2 ? 'Победила левая дорожка' : 'Победила правая дорожка';
-
-      
       const advantage1 = (et1 - dial1) + rt1;
       const advantage2 = (et2 - dial2) + rt2;
-
-      const formatted1 = advantage1.toFixed(3);
-      const formatted2 = advantage2.toFixed(3);
-      const formulaResult = ` ( левая = ${formatted1}, правая = ${formatted2})`;
-
-      result += formulaResult;
-
+      result += ` (левая = ${advantage1.toFixed(3)}, правая = ${advantage2.toFixed(3)})`;
       document.getElementById('results').innerText = result;
     }
-
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('button[data-rand]').forEach(btn => {
         btn.addEventListener('click', () => rand(btn.getAttribute('data-rand')));
       });
+      document.getElementById('randAllBtn').addEventListener('click', randAll);
       document.getElementById('startBtn').addEventListener('click', startRace);
+      randAll(); // при загрузке уже сгенерировать
     });
   </script>
 </body>
